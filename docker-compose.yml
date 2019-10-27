@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+   frontend:
+     image: plonxyz/misp_apache:latest
+    #  volumes:
+    #     - ./misp_data:/var/www/MISP
+     restart: on-failure
+     ports:
+      - "8080:8080"
+      - "4434:4434"
+      - "50000:50000"
+     depends_on:
+      - db
+      - redis
+     links:
+      - "db:db"
+      - "redis:redis"
+
+   redis:
+      image: plonxyz/misp_redis:latest
+      volumes:
+       - ./redis/misp_redis_conf:/tmp
+      entrypoint: /usr/local/bin/redis-server /tmp/redis.conf 
+      restart: on-failure 
+   db:
+     image: plonxyz/misp_mariadb:latest
+     ports:
+      - "3306:3306"
+    
+     #volumes:
+     #- ./misp_db_data/db:/var/lib/mysql
+     restart: on-failure
