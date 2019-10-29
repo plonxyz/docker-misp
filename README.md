@@ -2,7 +2,7 @@
 rootless Docker MISP Container 
 \
 This is a modified version of [harvard-itsecurity/docker-misp](https://github.com/harvard-itsecurity/docker-misp). \
-I've splitted it up (1 Apache,1 MySQL, 1 Redis Container) , so it doesn't rely on supervisord anymore and MISP runs on www-data context.
+I've splitted it up (1 Apache,1 MySQL, 1 Redis Container) , so it doesn't rely on supervisord anymore and MISP runs fully on www-data context.
 ## Getting Started
 
 ```
